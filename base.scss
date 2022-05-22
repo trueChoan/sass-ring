@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'Aniron';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Aniron'), url('font/anirm___.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Aniron Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Aniron Bold'), url('font/anirb___.woff') format('woff');
+}
+
+h1 {
+    font-family: 'Aniron Bold';
+    margin : 0 1rem;
+
+}
+
+.flex {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+}
+
+body {
+    background-image: url("parchemin.jpg");
+    background-position: center;
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+
+}
+
+@mixin ring($w, $h, $color) {
+  width: $w;
+  height: $h;
+  border: ($w / 10) solid $color;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: inset ($w*0.03) $h*0.03 ($w * 0.05) darken($color, 10%), 
+  ($w*0.03) $h*0.03 ($w * 0.05) darken($color, 10%);
+  margin: 1rem 0;
+  
+}
+
+$color1 : #FF5A00;
+$color2 : #FCCA02;
+$color3 : #3A3A37;
+
+.ring {
+  @include ring(50px, 50px, $color1);
+}
+
+@mixin margin($margin, $value) {
+    margin-left : -$margin * $value;
+}
+
+
+.bigRing {
+    @include ring(200px, 200px, $color2)
+}
+
+@for $i from 1 through 6 { 
+    .repeatRing-#{$i} {
+        @include ring((1rem+$i/2), (1rem+$i/2), $color3);
+        @include margin (5px, $i);
+    }
+    
+}
